@@ -3,7 +3,7 @@ import { useUser } from '@clerk/clerk-react';
 import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import { ExamplePage } from './pages/ExamplePage';
-import './App.css';
+import { PortfolioPage } from './pages/PortfolioPage';
 
 function ProtectedRoute({ children }) {
   const { isSignedIn, isLoaded } = useUser();
@@ -12,11 +12,15 @@ function ProtectedRoute({ children }) {
 }
 
 function App() {
+  const { isSignedIn, isLoaded } = useUser();
+  
+  if (!isLoaded) return null;
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={isSignedIn ? <Navigate to="/example" /> : <LoginPage />} />
+        <Route path="/login" element={isSignedIn ? <Navigate to="/example" /> : <LoginPage />} />
         <Route
           path="/example"
           element={
@@ -25,6 +29,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/:username" element={<PortfolioPage />} />
       </Routes>
     </BrowserRouter>
   );
