@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
+import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import { ExamplePage } from './pages/ExamplePage';
 import './App.css';
@@ -14,7 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/example" />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route
           path="/example"
