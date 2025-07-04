@@ -18,7 +18,9 @@ export class GitHubService {
     - created_at, updated_at
     - hireable status
     */
-    const response = await fetch(`${this.baseURL}/users/${username}`);
+    const response = await fetch(`${this.baseURL}/users/${username}`, {
+      headers: this.token ? { Authorization: `Bearer ${this.token}` } : {}
+    });
     return response.json();
   }
 
