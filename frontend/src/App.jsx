@@ -1,3 +1,5 @@
+import { useState } from "react";
+import UserForm from "./components/ApplicantInfo";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
 import { HomePage } from './pages/HomePage';
@@ -11,7 +13,9 @@ function ProtectedRoute({ children }) {
   return isSignedIn ? children : <Navigate to="/login" />;
 }
 
-function App() {
+export default function App() {
+  const [userData, setUserData] = useState({});
+
   return (
     <BrowserRouter>
       <Routes>
@@ -25,9 +29,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/form" element={<UserForm onFormChange={setUserData} />} />
       </Routes>
+      <div className="min-h-screen bg-black text-white p-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div>
+          <h1 className="text-2xl font-bold mb-4">👤 Fill Your Developer Info</h1>
+          <UserForm onFormChange={setUserData} />
+        </div>
+      </div>
     </BrowserRouter>
   );
 }
-
-export default App;
