@@ -5,22 +5,27 @@ import { useUser } from '@clerk/clerk-react';
 import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import { ExamplePage } from './pages/ExamplePage';
-import './App.css';
+import { PortfolioPage } from './pages/PortfolioPage';
+import { useUser } from '@clerk/clerk-react';
+import { useState } from 'react';
 
 function ProtectedRoute({ children }) {
   const { isSignedIn, isLoaded } = useUser();
   if (!isLoaded) return null;
   return isSignedIn ? children : <Navigate to="/login" />;
 }
-
 export default function App() {
+  const { isSignedIn, isLoaded } = useUser();
   const [userData, setUserData] = useState({});
+
+  if (!isLoaded) return null;
+
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={isSignedIn ? <Navigate to="/example" /> : <LoginPage />} />
+        <Route path="/login" element={isSignedIn ? <Navigate to="/example" /> : <LoginPage />} />
         <Route
           path="/example"
           element={
@@ -29,7 +34,11 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/:username" element={<PortfolioPage />} />
+
         {/* <Route path="/form" element={<UserForm onFormChange={setUserData} />} /> */}
+
       </Routes>
       <div className="min-h-screen bg-black text-white p-10 grid grid-cols-1 md:grid-cols-2 gap-10">
         <div>
