@@ -169,9 +169,9 @@ export function PortfolioPage() {
             <div className="mb-8">
               <h3 className="text-lg font-semibold mb-4 text-muted-foreground text-center">Programming Languages</h3>
               <Marquee pauseOnHover className="[--duration:20s]" >
-                {portfolioData.techStack.languages.map((lang, index) => (
+                {portfolioData.techStack.languages.map((lang) => (
                   <TechItem
-                    key={index}
+                    key={lang}
                     name={lang}
                     className="mx-4 bg-primary/20 text-primary-foreground border-primary/40"
                   />
