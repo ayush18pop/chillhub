@@ -9,8 +9,7 @@ function Separator({
   decorative = true,
   ...props
 }) {
-  return (
-    (<SeparatorPrimitive.Root
+  return <SeparatorPrimitive.Root
       data-slot="separator"
       decorative={decorative}
       orientation={orientation}
