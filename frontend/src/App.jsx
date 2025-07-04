@@ -1,5 +1,5 @@
 import { useState } from "react";
-import UserForm from "./components/ApplicantInfo";
+import UserForm from "./components/StepperForm";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
 import { HomePage } from './pages/HomePage';
@@ -29,7 +29,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/form" element={<UserForm onFormChange={setUserData} />} />
+        {/* <Route path="/form" element={<UserForm onFormChange={setUserData} />} /> */}
       </Routes>
       <div className="min-h-screen bg-black text-white p-10 grid grid-cols-1 md:grid-cols-2 gap-10">
         <div>
