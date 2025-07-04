@@ -23,7 +23,7 @@ export default function ApplicantInfo({ onFormChange }) {
   }
 
   return (
-    <form className="grid grid-cols-1 md:grid-cols-2 gap-6 text-white justify-items-center">
+    <form className="grid grid-cols-1 md:grid-cols-2 gap-6 text-foreground justify-items-center">
       {/* Full Name */}
       <div className="flex flex-col w-full md:w-4/5">
         <label className="text-sm mb-1">Full Name</label>
@@ -31,7 +31,7 @@ export default function ApplicantInfo({ onFormChange }) {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className="p-2 rounded bg-gray-800 text-white"
+          className="p-2 rounded bg-input text-foreground border border-border focus:outline-none focus:ring-2 focus:ring-ring"
         />
       </div>
 
@@ -42,7 +42,7 @@ export default function ApplicantInfo({ onFormChange }) {
           name="role"
           value={formData.role}
           onChange={handleChange}
-          className="p-2 rounded bg-gray-800 text-white"
+          className="p-2 rounded bg-input text-foreground border border-border focus:outline-none focus:ring-2 focus:ring-ring"
         />
       </div>
 

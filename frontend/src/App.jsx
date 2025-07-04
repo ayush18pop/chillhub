@@ -6,8 +6,6 @@ import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import { ExamplePage } from './pages/ExamplePage';
 import { PortfolioPage } from './pages/PortfolioPage';
-import { useUser } from '@clerk/clerk-react';
-import { useState } from 'react';
 
 function ProtectedRoute({ children }) {
   const { isSignedIn, isLoaded } = useUser();
@@ -34,18 +32,21 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-
+        <Route 
+          path="/form" 
+          element={
+            <ProtectedRoute>
+              <div className="min-h-screen bg-background text-foreground p-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div>
+                  <h1 className="text-2xl font-bold mb-4 text-foreground">👤 Fill Your Developer Info</h1>
+                  <UserForm onFormChange={setUserData} />
+                </div>
+              </div>
+            </ProtectedRoute>
+          } 
+        />
         <Route path="/:username" element={<PortfolioPage />} />
-
-        {/* <Route path="/form" element={<UserForm onFormChange={setUserData} />} /> */}
-
       </Routes>
-      <div className="min-h-screen bg-black text-white p-10 grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div>
-          <h1 className="text-2xl font-bold mb-4">👤 Fill Your Developer Info</h1>
-          <UserForm onFormChange={setUserData} />
-        </div>
-      </div>
     </BrowserRouter>
   );
 }

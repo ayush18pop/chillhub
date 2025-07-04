@@ -46,18 +46,18 @@ export default function StepperForm({ onSubmit }) {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-[#0b0b0f]/80 px-4 backdrop-blur-sm">
-      <div className="w-full max-w-md bg-[#111113]/80 shadow-2xl p-6 md:p-8 transition-all duration-300 flex flex-col items-center">
+    <div className="fixed inset-0 flex items-center justify-center bg-background/80 px-4 backdrop-blur-sm">
+      <div className="w-full max-w-md bg-card/80 shadow-2xl p-6 md:p-8 transition-all duration-300 flex flex-col items-center">
         {/* Progress Bar */}
-        <div className="w-full h-2 bg-[#1e1e23] rounded-full overflow-hidden mb-6">
+        <div className="w-full h-2 bg-muted rounded-full overflow-hidden mb-6">
           <div
-            className="h-full bg-white transition-all duration-300 ease-in-out"
+            className="h-full bg-primary transition-all duration-300 ease-in-out"
             style={{ width: `${progress}%` }}
           ></div>
         </div>
 
         {/* Step Heading */}
-        <h2 className="text-lg md:text-xl font-semibold text-white mb-4 text-center tracking-wide">
+        <h2 className="text-lg md:text-xl font-semibold text-foreground mb-4 text-center tracking-wide">
           {current.label}
         </h2>
 
@@ -68,7 +68,7 @@ export default function StepperForm({ onSubmit }) {
             value={formData[current.name]}
             onChange={handleChange}
             rows={4}
-            className="w-full p-3 rounded-lg bg-[#1e1e23] text-white border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-white mb-6 placeholder:text-gray-400"
+            className="w-full p-3 rounded-lg bg-input text-foreground border border-border focus:outline-none focus:ring-2 focus:ring-ring mb-6 placeholder:text-muted-foreground"
             placeholder={`Enter your ${current.label.toLowerCase()}`}
           />
         ) : current.type === "file" ? (
@@ -78,10 +78,10 @@ export default function StepperForm({ onSubmit }) {
               name="resume"
               accept=".pdf"
               onChange={handleChange}
-              className="w-full file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-white file:text-black hover:file:bg-gray-300 bg-[#1e1e23] text-white rounded-lg p-3 mb-2"
+              className="w-full file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 bg-input text-foreground rounded-lg p-3 mb-2"
             />
             {formData.resume && (
-              <p className="text-sm text-gray-400 mt-1">
+              <p className="text-sm text-muted-foreground mt-1">
                 Selected: {formData.resume.name}
               </p>
             )}
@@ -92,7 +92,7 @@ export default function StepperForm({ onSubmit }) {
             name={current.name}
             value={formData[current.name]}
             onChange={handleChange}
-            className="w-full p-3 rounded-lg bg-[#1e1e23] text-white border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-white mb-6 placeholder:text-gray-400"
+            className="w-full p-3 rounded-lg bg-input text-foreground border border-border focus:outline-none focus:ring-2 focus:ring-ring mb-6 placeholder:text-muted-foreground"
             placeholder={`Enter your ${current.label.toLowerCase()}`}
           />
         )}
@@ -102,13 +102,13 @@ export default function StepperForm({ onSubmit }) {
           <button
             onClick={handleBack}
             disabled={step === 0}
-            className="px-4 py-2 rounded-lg bg-[#27272a] text-white hover:bg-[#3f3f46] transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-4 py-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-secondary/90 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Back
           </button>
           <button
             onClick={handleNext}
-            className="px-4 py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition"
+            className="px-4 py-2 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition"
           >
             {step === steps.length - 1 ? "Submit" : "Next"}
           </button>
